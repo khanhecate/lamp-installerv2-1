@@ -1,0 +1,59 @@
+#!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+	echo "are you root ?"
+	exit 
+	else
+	clear
+fi
+chmod -R 755 *
+whiptail --textbox  --title "Install" --backtitle "by:khan(hecate)" --yes-button "ok" about 20 60
+echo "***************************installer Lamp Setup*******************************"
+echo "choise 1,to install use php5 / pilih 1 untuk menginstall menggunakan php5"
+echo "choise 2, to install use php7.0 / pilih 2 untuk menginstall menggunakan php7.0"
+echo "==============================================================================="
+while true
+do
+	echo "1. Install php5"
+	echo "2. Install php7.0"
+	echo "3. Install php7.2"
+	printf "your choise : "
+	read choise
+	case $choise in
+		1)cd class && ./php5.0 && break
+		;;
+		2)cd class && ./php7.0 && break 
+		;;
+		3)cd class && ./php7.2 && break
+		;;
+		*)clear && echo "invalid menu ! , try again" && sleep 1 && clear
+		;;
+	esac
+done
+cp --verbose info.php /var/www/html/ && sleep 1 && clear
+echo "*************************** select Database Server******************************"
+echo "choise 1,to install mariadb-server / pilih 1 untuk menginstall mariadb-server "
+echo "choise 2, to install mysql-server / pilih 2 untuk menginstall mysql-server "
+echo "================================================================================"
+echo "what you choose : "
+while true
+do
+	echo "1.mariadb-server"
+	echo "2.mysql-server"
+	printf "your choise : " 
+	read pilih
+	case $pilih in
+		1) apt install mariadb-server && break
+			;;
+		2) apt install mysql-server && break
+			;;
+		*)clear && echo "invalid menu !" && sleep 1 && clear
+	esac
+done
+mysql_secure_installation
+#install phpmyadmin
+apt-get install phpmyadmin
+#generate a2enmod
+a2enmod rewrite 
+echo "Restarting apache2"
+service apache2 restart
+echo "done, your lamp is installed"

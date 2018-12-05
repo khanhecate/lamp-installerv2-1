@@ -1,0 +1,2 @@
+#!/bin/bash
+apt install apache2 php5 php5-mysql php5-gd php5-json php5-mcrypt php5-xmlrpc php5-cli php5-intl php5-curl php-pear php5-imagick php-zip
