@@ -6,7 +6,7 @@ program use this command :
 [debian /ubuntu]
 #./install
 
-if you can't run this shell , try to chmod or chwon 755 laminstaler folder like this :
+if you can't run this shell , try to chmod or chwon 755 lampinstaler folder like this :
 chmod -R 755 LAMiNSTALER/
 or
 chwon -R 755 LAMiNSTALER/
